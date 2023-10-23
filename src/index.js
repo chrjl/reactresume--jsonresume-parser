@@ -1,3 +1,10 @@
-export default function parser() {
-  return 'hello from jsonresume-parser (src/index.js)';
+import * as parsers from './sections.js';
+
+export default function parser(jsonresume) {
+  const { skills, languages } = jsonresume;
+
+  return {
+    skills: parsers.skills(skills),
+    languages: parsers.languages(languages),
+  };
 }
