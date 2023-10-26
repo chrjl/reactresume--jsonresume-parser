@@ -1,24 +1,22 @@
-export function skills(data) {
-  return data
-    ? data.map((skill) => ({
-        title: skill.name,
-        keywords: skill.keywords,
-      }))
-    : null;
-}
+export default {
+  skills(data: JSONResumeSkill[]): ResumeEntry[] {
+    return data.map(({ name, keywords }) => ({
+      title: name,
+      keywords,
+    }));
+  },
 
-export function languages(data) {
-  const keywords = data?.map(
-    ({ language, fluency }) => `${language} *(${fluency})*`
-  );
+  languages(data: JSONResumeLanguage[]): ResumeEntry {
+    const keywords = data.map(
+      ({ language, fluency }) => `${language} *(${fluency})*`
+    );
 
-  return data
-    ? {
-        title: 'languages',
-        keywords,
-      }
-    : null;
-}
+    return {
+      title: 'languages',
+      keywords,
+    };
+  },
+};
 
 export interface ResumeEntry {
   title: string;
@@ -26,4 +24,14 @@ export interface ResumeEntry {
   keywords?: string[];
   description?: string;
   highlights?: string[];
+}
+
+interface JSONResumeSkill {
+  name: string;
+  keywords?: string[];
+}
+
+interface JSONResumeLanguage {
+  language: string;
+  fluency?: string;
 }
