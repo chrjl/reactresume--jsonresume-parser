@@ -3,10 +3,15 @@
   "type": "module",
   "version": "0.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc --rootDir src/ --outDir dist/",
     "test": "node tests/index.js"
   },
-  "keywords": []
+  "keywords": [],
+  "devDependencies": {
+    "@types/react": "^18.2.28",
+    "typescript": "^5.2.2"
+  }
 }
