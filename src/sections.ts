@@ -19,3 +19,11 @@ export function languages(data) {
       }
     : null;
 }
+
+export interface ResumeEntry {
+  title: string;
+  subtitle?: string;
+  keywords?: string[];
+  description?: string;
+  highlights?: string[];
+}
