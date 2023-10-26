@@ -26,6 +26,11 @@ export interface ResumeEntry {
   highlights?: string[];
 }
 
+export interface JSONResumeObject {
+  skills?: JSONResumeSkill[];
+  languages?: JSONResumeLanguage[];
+}
+
 interface JSONResumeSkill {
   name: string;
   keywords?: string[];

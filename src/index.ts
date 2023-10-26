@@ -1,10 +1,17 @@
-import * as parsers from './sections.js';
+import parsers, { ResumeEntry, JSONResumeObject } from './sections';
 
-export default function parser(jsonresume) {
+export default function parser(jsonresume: JSONResumeObject): ResumeObject {
   const { skills, languages } = jsonresume;
 
   return {
-    skills: parsers.skills(skills),
-    languages: parsers.languages(languages),
+    skills: skills ? parsers.skills(skills) : null,
+    languages: languages ? parsers.languages(languages) : null,
   };
 }
+
+export interface ResumeObject {
+  skills?: ResumeEntry[] | null;
+  languages?: ResumeEntry | null;
+}
+
+export { ResumeEntry };
