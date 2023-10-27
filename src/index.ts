@@ -11,7 +11,7 @@ export default function parser(jsonresume: JSONResumeObject): ResumeObject {
 
 export interface ResumeObject {
   skills?: ResumeEntry[] | null;
-  languages?: ResumeEntry | null;
+  languages?: ResumeEntry[] | null;
 }
 
 export { ResumeEntry };

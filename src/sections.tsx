@@ -9,15 +9,17 @@ export default {
     }));
   },
 
-  languages(data: JSONResumeLanguage[]): ResumeEntry {
+  languages(data: JSONResumeLanguage[]): ResumeEntry[] {
     const keywords = data.map(
       ({ language, fluency }) => `${language} *(${fluency})*`
     );
 
-    return {
-      title: 'languages',
-      description: <Markdown>{keywords?.join(', ')}</Markdown>,
-    };
+    return [
+      {
+        title: 'languages',
+        description: <Markdown>{keywords?.join(', ')}</Markdown>,
+      },
+    ];
   },
 };
 
