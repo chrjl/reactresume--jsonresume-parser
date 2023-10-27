@@ -1,8 +1,11 @@
+import React from 'react';
+import Markdown from 'react-markdown';
+
 export default {
   skills(data: JSONResumeSkill[]): ResumeEntry[] {
     return data.map(({ name, keywords }) => ({
       title: name,
-      keywords,
+      description: <Markdown>{keywords?.join(', ')}</Markdown>,
     }));
   },
 
@@ -13,17 +16,17 @@ export default {
 
     return {
       title: 'languages',
-      keywords,
+      description: <Markdown>{keywords?.join(', ')}</Markdown>,
     };
   },
 };
 
 export interface ResumeEntry {
-  title: string;
-  subtitle?: string;
-  keywords?: string[];
-  description?: string;
-  highlights?: string[];
+  title: React.ReactNode;
+  subtitle?: React.ReactNode;
+  keywords?: React.ReactNode;
+  description?: React.ReactNode;
+  highlights?: React.ReactNode;
 }
 
 export interface JSONResumeObject {
