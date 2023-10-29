@@ -15,6 +15,7 @@
     "react-markdown": "^9.0.0"
   },
   "devDependencies": {
+    "@reactresume/types": "workspace:*",
     "@types/react": "^18.2.28",
     "typescript": "^5.2.2"
   }

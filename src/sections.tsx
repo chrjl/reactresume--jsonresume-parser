@@ -1,6 +1,8 @@
 import React from 'react';
 import Markdown from 'react-markdown';
 
+import { ResumeEntry } from '@reactresume/types';
+
 export default {
   skills(data: JSONResumeSkill[]): ResumeEntry[] {
     return data.map(({ name, keywords }) => ({
@@ -22,14 +24,6 @@ export default {
     ];
   },
 };
-
-export interface ResumeEntry {
-  title: React.ReactNode;
-  subtitle?: React.ReactNode;
-  keywords?: React.ReactNode;
-  description?: React.ReactNode;
-  highlights?: React.ReactNode;
-}
 
 export interface JSONResumeObject {
   skills?: JSONResumeSkill[];

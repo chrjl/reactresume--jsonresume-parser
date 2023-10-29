@@ -1,4 +1,6 @@
-import parsers, { ResumeEntry, JSONResumeObject } from './sections';
+import { ResumeObject } from '@reactresume/types';
+
+import parsers, { JSONResumeObject } from './sections';
 
 export default function parser(jsonresume: JSONResumeObject): ResumeObject {
   const { skills, languages } = jsonresume;
@@ -8,10 +10,3 @@ export default function parser(jsonresume: JSONResumeObject): ResumeObject {
     languages: languages ? parsers.languages(languages) : null,
   };
 }
-
-export interface ResumeObject {
-  skills?: ResumeEntry[] | null;
-  languages?: ResumeEntry[] | null;
-}
-
-export { ResumeEntry };
