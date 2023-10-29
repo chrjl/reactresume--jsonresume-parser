@@ -1,17 +1,17 @@
 import React from 'react';
 import Markdown from 'react-markdown';
 
-import { ResumeEntry } from '@reactresume/types';
+import { ResumeEntry, JSONResume } from '@reactresume/types';
 
 export default {
-  skills(data: JSONResumeSkill[]): ResumeEntry[] {
+  skills(data: JSONResume.Skill[]): ResumeEntry[] {
     return data.map(({ name, keywords }) => ({
       title: name,
       description: <Markdown>{keywords?.join(', ')}</Markdown>,
     }));
   },
 
-  languages(data: JSONResumeLanguage[]): ResumeEntry[] {
+  languages(data: JSONResume.Language[]): ResumeEntry[] {
     const keywords = data.map(
       ({ language, fluency }) => `${language} *(${fluency})*`
     );
@@ -24,18 +24,3 @@ export default {
     ];
   },
 };
-
-export interface JSONResumeObject {
-  skills?: JSONResumeSkill[];
-  languages?: JSONResumeLanguage[];
-}
-
-interface JSONResumeSkill {
-  name: string;
-  keywords?: string[];
-}
-
-interface JSONResumeLanguage {
-  language: string;
-  fluency?: string;
-}

@@ -1,6 +1,6 @@
-import { ResumeObject } from '@reactresume/types';
+import { ResumeObject, JSONResumeObject } from '@reactresume/types';
 
-import parsers, { JSONResumeObject } from './sections';
+import parsers from './sections';
 
 export default function parser(jsonresume: JSONResumeObject): ResumeObject {
   const { skills, languages } = jsonresume;
