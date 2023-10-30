@@ -13,7 +13,7 @@ export default {
 
   languages(data: JSONResume.Language[]): ResumeEntry[] {
     const keywords = data.map(
-      ({ language, fluency }) => `${language} *(${fluency})*`
+      ({ language, fluency }) => language + (fluency ? ` *(${fluency})*` : '')
     );
 
     return [
