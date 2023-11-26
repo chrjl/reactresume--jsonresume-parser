@@ -1,6 +1,12 @@
 import { ResumeObject, JSONResumeObject } from '@reactresume/types';
 
-import { skills, languages, education, certificates } from './sections';
+import {
+  skills,
+  languages,
+  education,
+  certificates,
+  projects,
+} from './sections';
 
 export default function parser(jsonresume: JSONResumeObject): ResumeObject {
   return {
@@ -10,5 +16,6 @@ export default function parser(jsonresume: JSONResumeObject): ResumeObject {
     certificates: jsonresume.certificates
       ? certificates(jsonresume.certificates)
       : null,
+    projects: jsonresume.projects ? projects(jsonresume.projects) : null,
   };
 }
