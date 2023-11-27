@@ -6,6 +6,7 @@ import {
   education,
   certificates,
   projects,
+  work,
 } from './sections';
 
 export default function parser(jsonresume: JSONResumeObject): ResumeObject {
@@ -17,5 +18,7 @@ export default function parser(jsonresume: JSONResumeObject): ResumeObject {
       ? certificates(jsonresume.certificates)
       : null,
     projects: jsonresume.projects ? projects(jsonresume.projects) : null,
+    work: jsonresume.work ? work(jsonresume.work) : null,
+    experience: jsonresume.experience ? work(jsonresume.experience) : null,
   };
 }
