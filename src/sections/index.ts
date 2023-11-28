@@ -5,4 +5,14 @@ import certificates from './certificates';
 import projects from './projects';
 import work from './work';
 
-export { skills, languages, education, certificates, projects, work };
+const experience = work;
+
+export {
+  skills,
+  languages,
+  education,
+  certificates,
+  projects,
+  work,
+  experience,
+};
