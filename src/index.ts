@@ -8,7 +8,9 @@ export default function (jsonresume: JSONResumeObject): ResumeObject {
       section in jsonresume
         ? {
             ...acc,
-            [section]: parser(jsonresume[section])
+            [section]: parser(
+              jsonresume[section].filter(({ _display }) => _display !== false)
+            ),
           }
         : acc,
     {}
