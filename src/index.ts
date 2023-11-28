@@ -10,7 +10,7 @@ import {
 } from './sections';
 
 export default function parser(jsonresume: JSONResumeObject): ResumeObject {
-  return {
+  const resumeObject = {
     skills: jsonresume.skills ? skills(jsonresume.skills) : null,
     languages: jsonresume.languages ? languages(jsonresume.languages) : null,
     education: jsonresume.education ? education(jsonresume.education) : null,
@@ -21,4 +21,8 @@ export default function parser(jsonresume: JSONResumeObject): ResumeObject {
     work: jsonresume.work ? work(jsonresume.work) : null,
     experience: jsonresume.experience ? work(jsonresume.experience) : null,
   };
+
+  return Object.fromEntries(
+    Object.entries(resumeObject).filter(([_, value]) => value !== null)
+  );
 }
