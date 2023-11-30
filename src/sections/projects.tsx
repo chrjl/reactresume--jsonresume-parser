@@ -1,10 +1,12 @@
 import React from 'react';
 import Markdown from 'react-markdown';
 
-import { ResumeEntry, JSONResume } from '@reactresume/types';
+import { ResumeEntry, JSONResumeEntry } from '@reactresume/types';
 import { HorizontalUList } from '@reactresume/components';
 
-export default function projects(data: JSONResume.Project[]): ResumeEntry[] {
+export default function projects(
+  data: JSONResumeEntry.Project[]
+): ResumeEntry[] {
   return data.map(({ name, keywords, url, description, highlights }) => ({
     title: name,
     subtitle: keywords ? (

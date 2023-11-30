@@ -1,10 +1,10 @@
 import React from 'react';
 import Markdown from 'react-markdown';
 
-import { ResumeEntry, JSONResume } from '@reactresume/types';
+import { ResumeEntry, JSONResumeEntry } from '@reactresume/types';
 import { HorizontalUList } from '@reactresume/components';
 
-export default function work(data: JSONResume.Work[]): ResumeEntry[] {
+export default function work(data: JSONResumeEntry.Work[]): ResumeEntry[] {
   return data.map(
     ({
       position,
