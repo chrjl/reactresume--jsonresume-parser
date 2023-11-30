@@ -3,7 +3,8 @@ import { ResumeObject, JSONResumeObject } from '@reactresume/types';
 import * as parsers from './sections';
 
 export default function (jsonresume: JSONResumeObject): ResumeObject {
-  return Object.entries(parsers).reduce(
+  const { basics } = jsonresume;
+  const sections = Object.entries(parsers).reduce(
     (acc, [section, parser]) =>
       section in jsonresume
         ? {
@@ -15,4 +16,6 @@ export default function (jsonresume: JSONResumeObject): ResumeObject {
         : acc,
     {}
   );
+
+  return { basics, ...sections };
 }
