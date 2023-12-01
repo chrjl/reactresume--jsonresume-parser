@@ -17,12 +17,16 @@ export default function projects(
         <ul>
           {url.map((link, index) => (
             <li key={index}>
-              <a href={link}>{link}</a>
+              <a href={link} target="_blank">
+                {link}
+              </a>
             </li>
           ))}
         </ul>
       ) : (
-        <a href={url}>{url}</a>
+        <a href={url} target="_blank">
+          {url}
+        </a>
       )
     ) : null,
     description: description ? <Markdown children={description} /> : null,
