@@ -22,7 +22,9 @@ export default function work(data: JSONResumeEntry.Work[]): ResumeEntry[] {
       highlights: highlights ? (
         <ul>
           {highlights.map((highlight, index) => (
-            <li key={index}>{highlight}</li>
+            <li key={index}>
+              <Markdown children={highlight} />
+            </li>
           ))}
         </ul>
       ) : null,
