@@ -3,19 +3,20 @@ import { ResumeObject, JSONResumeObject } from '@reactresume/types';
 import * as parsers from './sections';
 
 export default function (jsonresume: JSONResumeObject): ResumeObject {
-  const { basics } = jsonresume;
-  const sections = Object.entries(parsers).reduce(
-    (acc, [section, parser]) =>
-      section in jsonresume
-        ? {
-            ...acc,
-            [section]: parser(
+  const { basics, ...sections } = jsonresume;
+
+  const parsed = Object.fromEntries(
+    Object.entries(parsers)
+      .map(([section, parser]) => [
+        section,
+        section in sections
+          ? parser(
               jsonresume[section].filter(({ _display }) => _display !== false)
-            ),
-          }
-        : acc,
-    {}
+            )
+          : null,
+      ])
+      .filter(([_, value]) => value !== null)
   );
 
-  return { basics, ...sections };
+  return { basics: basics && parsers.basics(basics), ...parsed };
 }
