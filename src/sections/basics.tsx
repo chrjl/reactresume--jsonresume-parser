@@ -1,7 +1,7 @@
 import { JSONResumeEntry, ResumeEntry } from '@reactresume/types';
 import { HorizontalUList } from '@reactresume/components';
 
-export default function basics(data: JSONResumeEntry.Basics): ResumeEntry {
+export default function basics(data: JSONResumeEntry.Basics): ResumeEntry[] {
   const { name, label, email, phone, url, profiles, location } = data;
   const { city, region, countryCode } = location;
 
@@ -35,16 +35,18 @@ export default function basics(data: JSONResumeEntry.Basics): ResumeEntry {
     ...details.profiles,
   ];
 
-  return {
-    title: name,
-    subtitle: label,
-    description: (
-      <>
-        <div>
-          <HorizontalUList items={descriptionItems} />
-        </div>
-        <div>{details.location}</div>
-      </>
-    ),
-  };
+  return [
+    {
+      title: name,
+      subtitle: label,
+      description: (
+        <>
+          <div>
+            <HorizontalUList items={descriptionItems} />
+          </div>
+          <div>{details.location}</div>
+        </>
+      ),
+    },
+  ];
 }
