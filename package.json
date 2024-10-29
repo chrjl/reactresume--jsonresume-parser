@@ -7,18 +7,11 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc --rootDir src/ --outDir dist/",
-    "dev": "tsc --watch --preserveWatchOutput",
-    "test": "node tests/index.js"
+    "dev": "tsc --watch --preserveWatchOutput"
   },
   "keywords": [],
-  "dependencies": {
-    "react": "^18.3.1",
-    "react-markdown": "^9.0.1"
-  },
   "devDependencies": {
-    "@reactresume/types": "workspace:*",
-    "@reactresume/components": "workspace:*",
-    "@types/react": "^18.3.2",
-    "typescript": "^5.4.5"
+    "@reactresume/types": "*",
+    "typescript": "^5.6.3"
   }
 }
