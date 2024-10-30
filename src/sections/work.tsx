@@ -1,52 +1,29 @@
-import React from 'react';
-import Markdown from 'react-markdown';
+import type { JSONResumeObject, ResumeEntry } from '@reactresume/types';
 
-import { ResumeEntry, JSONResumeEntry } from '@reactresume/types';
-import { HorizontalUList } from '@reactresume/components';
+export default function parse(data: JSONResumeObject['work']): ResumeEntry[] {
+  if (!data) {
+    return [];
+  }
 
-export default function work(data: JSONResumeEntry.Work[]): ResumeEntry[] {
   return data.map(
     ({
       position,
-      summary,
-      highlights,
+      summary = '',
+      highlights = [],
       name,
       location,
-      department,
+      department = '',
       startDate,
       endDate,
     }) => ({
       title: position,
-      subtitle: subtitle(name, department, location, startDate, endDate),
-      description: summary ? <Markdown children={summary} /> : null,
-      highlights: highlights ? (
-        <ul>
-          {highlights.map((highlight, index) => (
-            <li key={index}>
-              <Markdown children={highlight} />
-            </li>
-          ))}
-        </ul>
-      ) : null,
+      subtitle: [
+        name + (location ? ` (${location})` : ''),
+        department,
+        (startDate ? `${startDate} to ` : '') + (endDate || 'present'),
+      ],
+      description: [summary],
+      highlights: highlights,
     })
   );
-
-  function subtitle(
-    name: string,
-    department: string | undefined,
-    location: string | undefined,
-    startDate: string | undefined,
-    endDate: string | undefined
-  ) {
-    const dateStr = (startDate && `${startDate} to ` + endDate) || null;
-    const nameStr = name && (
-      <>
-        {name}
-        {location && <em> ({location})</em>}
-      </>
-    );
-
-    const items = [nameStr, department, dateStr].filter(Boolean);
-    return items.length ? <HorizontalUList items={items} /> : null;
-  }
 }

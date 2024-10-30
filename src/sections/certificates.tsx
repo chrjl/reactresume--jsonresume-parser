@@ -1,11 +1,14 @@
-import { ResumeEntry, JSONResumeEntry } from '@reactresume/types';
-import { HorizontalUList } from '@reactresume/components';
+import type { JSONResumeObject, ResumeEntry } from '@reactresume/types';
 
-export default function certificates(
-  data: JSONResumeEntry.Certificate[]
+export default function parse(
+  data: JSONResumeObject['certificates']
 ): ResumeEntry[] {
-  return data.map(({ name, date, issuer }) => ({
+  if (!data) {
+    return [];
+  }
+
+  return data.map(({ name, date = '', issuer = '' }) => ({
     title: name,
-    description: <HorizontalUList items={[issuer, date]} />,
+    description: [issuer, date],
   }));
 }

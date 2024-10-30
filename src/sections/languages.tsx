@@ -1,17 +1,18 @@
-import React from 'react';
-import Markdown from 'react-markdown';
+import type { JSONResumeObject, ResumeEntry } from '@reactresume/types';
 
-import { ResumeEntry, JSONResumeEntry } from '@reactresume/types';
-
-export default function languages(data: JSONResumeEntry.Language[]): ResumeEntry[] {
-  const keywords = data.map(
-    ({ language, fluency }) => language + (fluency ? ` *(${fluency})*` : '')
-  );
+export default function parse(
+  data: JSONResumeObject['languages']
+): ResumeEntry[] {
+  if (!data) {
+    return [];
+  }
 
   return [
     {
-      title: 'languages',
-      description: <Markdown>{keywords?.join(', ')}</Markdown>,
+      title: ['languages'],
+      description: data.map(
+        ({ language, fluency }) => language + (fluency ? ` (${fluency})` : '')
+      ),
     },
   ];
 }

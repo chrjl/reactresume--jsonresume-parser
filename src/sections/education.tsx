@@ -1,11 +1,14 @@
-import { ResumeEntry, JSONResumeEntry } from '@reactresume/types';
-import { HorizontalUList } from '@reactresume/components';
+import type { JSONResumeObject, ResumeEntry } from '@reactresume/types';
 
-export default function education(data: JSONResumeEntry.Education[]): ResumeEntry[] {
+export default function parse(
+  data: JSONResumeObject['education']
+): ResumeEntry[] {
+  if (!data) {
+    return [];
+  }
+
   return data.map(({ institution, area, studyType, endDate }) => ({
-    title: institution,
-    description: (
-      <HorizontalUList items={[studyType + ` (${endDate})`, area]} />
-    ),
+    title: [institution],
+    description: [`${studyType} (${endDate || 'in progress'})`, area],
   }));
 }

@@ -1,52 +1,30 @@
-import { JSONResumeEntry, ResumeEntry } from '@reactresume/types';
-import { HorizontalUList } from '@reactresume/components';
+import type { JSONResumeObject, ResumeEntry } from '@reactresume/types';
 
-export default function basics(data: JSONResumeEntry.Basics): ResumeEntry[] {
-  const { name, label, email, phone, url, profiles, location } = data;
-  const { city, region, countryCode } = location;
+export default function parse(
+  data: JSONResumeObject['basics']
+): ResumeEntry[] {
+  if (!data) {
+    return [];
+  }
 
-  const details = {
-    email: <a href={`mailto:${email}`}>{email}</a>,
+  const {
+    name,
+    label = '',
+    email,
     phone,
-    url: url && (
-      <a href={url} target="_blank">
-        {url}
-      </a>
-    ),
-    profiles: profiles
-      ? profiles
-          .filter((profile) => profile._display !== false)
-          .map(
-            ({ url }) =>
-              url && (
-                <a href={url} target="_blank">
-                  {url}
-                </a>
-              )
-          )
-      : [],
-    location: [city, region, countryCode].filter(Boolean).join(', '),
-  };
-
-  const descriptionItems = [
-    details.email,
-    details.phone,
-    details.url,
-    ...details.profiles,
-  ];
+    url = '',
+    profiles = [],
+    location,
+  } = data;
+  const { city, region, countryCode } = location;
 
   return [
     {
-      title: name,
-      subtitle: label,
-      description: (
-        <>
-          <div>
-            <HorizontalUList items={descriptionItems} />
-          </div>
-          <div>{details.location}</div>
-        </>
-      ),
+      title: [name],
+      subtitle: [label],
+      description: [city, region, countryCode],
+      note: [phone],
+      highlights: [email, url, ...profiles.map((profile) => profile.url)],
     },
   ];
 }
